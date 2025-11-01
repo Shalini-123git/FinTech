@@ -4,7 +4,7 @@ import axios from 'axios';
 function Signup() {
   const [formData, setFormData] = useState({ sender: '', email: '', password: '' });
 
-  const handleChange = (e) => {setFormData({ ...formData, [e.target.sender]: e.target.value })};
+  const handleChange = (e) => {setFormData({ ...formData, [e.target.name]: e.target.value })};
 
   const handleSignup = async (e) => {
     e.preventDefault();
