@@ -8,10 +8,10 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+      const res = await axios.post('https://finance-chat-sh7m.onrender.com/api/auth/login', { email, password });
       alert(res.data.message);
       localStorage.setItem('token', res.data.token);
-      window.location.href = '/dashboard';
+      window.location.href = 'https://financechat.onrender.com/dashboard';
     } catch (err) {
       alert(err.response?.data?.error || 'Login failed');
     }

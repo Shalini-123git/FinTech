@@ -22,11 +22,11 @@ const Bot = () => {
 
         setLoading(true);
         try {
-          const res = await axios.post("http://localhost:8000/api/message", {
+          const res = await axios.post("https://finance-chat-sh7m.onrender.com/api/message", {
             sender: "user",
             prompt: input,
           });
-
+          console.log(res)
           if (res.status === 200) {
             setMessage((prev) => [
               ...prev,
