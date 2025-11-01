@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const botSchema = mongoose.Schema({
+    sender: { 
+        type: String, 
+        required: true 
+    },
     text: {
         type: String,
         required: true

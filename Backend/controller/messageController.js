@@ -5,21 +5,16 @@ import Bot from "../model/botModel.js"
 export const message = async (req, res) => {
     try {
 
-        const {prompt} = req.body;
+        const {prompt, sender} = req.body;
 
         if(!prompt) return res.status(400).json({message: "prompt can't be empty"})
         const normalisePrompt = prompt.toLowerCase().trim();
-
-        const user = new User({
-            sender: "user",
-            text: prompt
-        })
-        await user.save();
 
         const botResponse = botResponses[normalisePrompt] || "Sorry, I don't understand that!!"
         console.log(botResponse)
 
         const bot = new Bot({
+            sender: sender || "user",
             text: botResponse
         })
         await bot.save();
