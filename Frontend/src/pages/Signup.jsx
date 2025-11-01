@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom"
 
 function Signup() {
   const [formData, setFormData] = useState({ sender: '', email: '', password: '' });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {setFormData({ ...formData, [e.target.name]: e.target.value })};
 
@@ -11,7 +14,8 @@ function Signup() {
     try {
       const res = await axios.post('https://finance-chat-sh7m.onrender.com/api/auth/signup', formData);
       alert(res.data.message);
-      window.location.href = 'https://financechat.onrender.com/login';
+      navigate("/login");
+      
     } catch (err) {
       alert(err.response?.data?.error || 'Signup failed');
     }

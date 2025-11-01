@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom"
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -11,7 +14,7 @@ function Login() {
       const res = await axios.post('https://finance-chat-sh7m.onrender.com/api/auth/login', { email, password });
       alert(res.data.message);
       localStorage.setItem('token', res.data.token);
-      window.location.href = 'https://financechat.onrender.com/dashboard';
+      navigate("/dashboard")
     } catch (err) {
       alert(err.response?.data?.error || 'Login failed');
     }
