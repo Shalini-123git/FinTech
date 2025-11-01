@@ -10,7 +10,7 @@ import Bot from "./components/Bot.jsx";
 
 function App() {
   return (
-    <Router>
+    <Router basename="tothepoint_login">
       <div className="flex flex-col min-h-screen bg-gray-50 text-gray-900">
         {/* Navbar */}
         <Navbar />
