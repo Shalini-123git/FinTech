@@ -4,11 +4,19 @@ const userSchema = mongoose.Schema({
     sender: {
         type: String,
         required: true,
-        enum: ["user"]
+        default: "user"
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
     },
     text: {
         type: String,
-        required: true
+        // required: true
     },
     timestamp: {
         type: Date,

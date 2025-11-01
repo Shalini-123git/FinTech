@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 import Message from "./routes/message.js"
+import Auth from "./routes/authRoute.js";
 
 const app = express();
 dotenv.config();
@@ -17,7 +18,7 @@ mongoose.connect(process.env.ATLAS_URL)
     
 
 app.use(cors({ 
-    origin: "http://localhost:5173",
+    origin: "https://financechat.onrender.com",
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     credentials: true,
 }))
@@ -27,10 +28,11 @@ app.use(express.json())
 
 
 app.use("/api", Message)
+app.use("/api/auth", Auth)
 app.get("/", (req, res) => {
     res.json({message: "hello world"})
 })
 
-app.listen(8000, () => {
-    console.log("server is running on https://localhost:8000")
+app.listen(5000, () => {
+    console.log("server is running on https://localhost:5000")
 })
