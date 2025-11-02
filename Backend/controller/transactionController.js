@@ -22,12 +22,10 @@ export const addTransaction = async (req, res) => {
 
 export const userTransaction = async (req, res) => {
   try {
-    const transactions = await Transaction.find({ user: req.user._id }).sort({
-      date: -1,
-    });
-    res.json(transactions);
+    const transactions = await Transaction.find({});
+    res.json({transactions});
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: "Failed to fetch transactions" });
+    res.status(500).json({ error: err.message});
   }
 }

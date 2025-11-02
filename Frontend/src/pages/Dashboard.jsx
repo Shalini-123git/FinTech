@@ -70,6 +70,7 @@ const Dashboard = () => {
       const txRes = await axios.get(
         "https://finance-chat-sh7m.onrender.com/api/transaction"
       );
+      console.log(txRes)
       setTransactions(txRes.data.transactions || []);
 
       // Fetch all goals
@@ -89,7 +90,7 @@ const Dashboard = () => {
 
       setSummary({ income, expense, balance });
     } catch (err) {
-      console.error("Error fetching data:", err);
+      console.error("Error fetching data:", err.message);
     } finally {
       setLoading(false);
     }
