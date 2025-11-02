@@ -1,6 +1,10 @@
 import express from "express";
-import { login, signUp, logout } from "../controller/authController.js"
+import { login, signUp, logout, getUserInfo } from "../controller/authController.js";
+import { protect } from "../middleware/authMiddleware.js";
+
 const router = express();
+
+router.get("/user", protect, getUserInfo);
 
 router.post("/signUp", signUp);
 

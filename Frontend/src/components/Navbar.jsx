@@ -19,6 +19,9 @@ const Navbar = () => {
           <Link to="/dashboard" className="hover:text-indigo-600">Dashboard</Link>
           <Link to="/login" className="hover:text-indigo-600">Login</Link>
           <Link to="/signup" className="hover:text-indigo-600">Signup</Link>
+          <Link to="/add-expense" className="hover:text-indigo-600">Add Expense</Link>
+          <Link to="/goals" className="hover:text-indigo-600">Set Goals</Link>
+          
         </div>
 
         {/* Mobile Menu Button */}
@@ -48,6 +51,9 @@ const Navbar = () => {
           <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
           <Link to="/login" onClick={() => setMenuOpen(false)}>Login</Link>
           <Link to="/signup" onClick={() => setMenuOpen(false)}>Signup</Link>
+          <Link to="/add-expense" onClick={() => setMenuOpen(false)} >Add Expense</Link>
+          <Link to="/goals" onClick={() => setMenuOpen(false)}>Goals</Link>
+          <Link to="/analytics" onClick={() => setMenuOpen(false)}>Analytics</Link>
         </div>
       </div>
 

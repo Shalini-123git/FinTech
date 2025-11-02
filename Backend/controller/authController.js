@@ -27,7 +27,7 @@ export const login = async (req, res) => {
         res.status(200).json({message: "user logged in successfullt", decoded, token})
     } catch (error) {
         console.log(error);
-        res.status(500).json({message: "internal server error"})
+        res.status(500).json({message: "internal server error", error: error.message})
     }
 }
 
@@ -58,4 +58,12 @@ export const signUp = async (req, res) => {
 export const logout = (req, res) => {
     res.clearCookie("token");
     res.status(200).json({message: "user logout succesfully"})
+}
+
+export const getUserInfo = async (req, res) => {
+  try {
+    res.json({ user: req.user });
+  } catch (err) {
+    res.status(500).json({ error: "Server error" });
+  }
 }

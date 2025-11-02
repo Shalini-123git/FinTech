@@ -4,7 +4,7 @@ const features = [
   { title: 'Instant Transfers', desc: 'Send money securely and instantly worldwide.' },
   { title: 'AI Financial Assistant', desc: 'Get smart insights to grow your savings.' },
   { title: 'Secure Transactions', desc: 'Top-tier encryption to protect your data.' },
-  { title: 'Multi-Currency Support', desc: 'Manage multiple currencies in one account.' }
+  { title: 'Multi-Currency Support', desc: 'Manage multiple currencies in one account.' },
 ];
 
 function Features() {

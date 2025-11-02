@@ -7,6 +7,10 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import Bot from "./components/Bot.jsx";
+import AddExpense from "./pages/AddExpense.jsx";
+import Goals from "./pages/Goals.jsx";
+import Analytics from "./pages/Analytics.jsx";
+import Learn from "./pages/Learn";
 
 function App() {
   return (
@@ -22,6 +26,10 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/add-expense" element={<AddExpense />} />
+            <Route path="/goals" element={<Goals />} />
+            <Route path="/analytics" element={<Analytics />} />
+            <Route path="/learn" element={<Learn />} />
           </Routes>
         </main>
         {/* Footer */}
