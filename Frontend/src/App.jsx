@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -11,32 +11,70 @@ import AddExpense from "./pages/AddExpense.jsx";
 import Goals from "./pages/Goals.jsx";
 import Analytics from "./pages/Analytics.jsx";
 import Learn from "./pages/Learn";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
-    <Router>
-      <div className="flex flex-col min-h-screen bg-gray-50 text-gray-900">
-        {/* Navbar */}
-        <Navbar />
+    <div className="flex flex-col min-h-screen bg-gray-50 text-gray-900">
+      {/* Navbar always visible */}
+      <Navbar />
 
-        {/* Page Routes */}
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/add-expense" element={<AddExpense />} />
-            <Route path="/goals" element={<Goals />} />
-            <Route path="/analytics" element={<Analytics />} />
-            <Route path="/learn" element={<Learn />} />
-          </Routes>
-        </main>
-        {/* Footer */}
-        <Footer />
-      </div>
+      {/* Page Routes */}
+      <main className="flex-grow">
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+
+          {/* Protected Routes */}
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/add-expense"
+            element={
+              <ProtectedRoute>
+                <AddExpense />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/goals"
+            element={
+              <ProtectedRoute>
+                <Goals />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/analytics"
+            element={
+              <ProtectedRoute>
+                <Analytics />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/learn"
+            element={
+              <ProtectedRoute>
+                <Learn />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </main>
+
+      {/* Footer and Bot */}
+      <Footer />
       <Bot />
-    </Router>
+    </div>
   );
 }
 
