@@ -45,13 +45,11 @@
 // }
 
 // export default Dashboard;
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({ name: "Demo User", email: "demo@email.com" });
   const [transactions, setTransactions] = useState([]);
   const [goals, setGoals] = useState([]);
   const [summary, setSummary] = useState({
@@ -60,40 +58,23 @@ const Dashboard = () => {
     balance: 0,
   });
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
 
-  // Check for authentication
+  // Fetch sample or public data
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/login");
-      return;
-    }
+    fetchData();
+  }, []);
 
-    fetchUserData(token);
-  }, [navigate]);
-
-  // Fetch user data + transactions + goals
-  const fetchUserData = async (token) => {
+  const fetchData = async () => {
     try {
-      const res = await axios.get(
-        "https://finance-chat-sh7m.onrender.com/api/auth/user",
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-
-      setUser(res.data.user);
-
-      // Fetch user-specific transactions
+      // Fetch all transactions (or demo data)
       const txRes = await axios.get(
-        `https://finance-chat-sh7m.onrender.com/api/transactions/${res.data.user._id}`,
-        { headers: { Authorization: `Bearer ${token}` } }
+        "https://finance-chat-sh7m.onrender.com/api/transaction"
       );
       setTransactions(txRes.data.transactions || []);
 
-      // Fetch user-specific goals
+      // Fetch all goals
       const goalRes = await axios.get(
-        `https://finance-chat-sh7m.onrender.com/api/goals/${res.data.user._id}`,
-        { headers: { Authorization: `Bearer ${token}` } }
+        "https://finance-chat-sh7m.onrender.com/api/goals"
       );
       setGoals(goalRes.data.goals || []);
 
@@ -108,19 +89,10 @@ const Dashboard = () => {
 
       setSummary({ income, expense, balance });
     } catch (err) {
-      console.error(err);
-      if (err.response?.status === 401) {
-        localStorage.removeItem("token");
-        navigate("/login");
-      }
+      console.error("Error fetching data:", err);
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/login");
   };
 
   if (loading) {
@@ -137,16 +109,10 @@ const Dashboard = () => {
       <div className="flex justify-between items-center mb-8">
         <div>
           <h2 className="text-3xl font-bold text-slate-800">
-            Welcome back, {user?.name || "User"}
+            Welcome back, {user?.name}
           </h2>
           <p className="text-slate-600">{user?.email}</p>
         </div>
-        <button
-          onClick={handleLogout}
-          className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
-        >
-          Logout
-        </button>
       </div>
 
       {/* Summary Cards */}
@@ -222,14 +188,6 @@ const Dashboard = () => {
           ))
         )}
       </div>
-
-      {/* Floating Chatbot Button */}
-      <button
-        onClick={() => navigate("/chat")}
-        className="fixed bottom-6 right-6 bg-indigo-600 hover:bg-indigo-700 text-white p-4 rounded-full shadow-lg text-xl"
-      >
-        💬
-      </button>
     </div>
   );
 };

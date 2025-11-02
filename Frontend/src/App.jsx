@@ -31,41 +31,41 @@ function App() {
           <Route
             path="/dashboard"
             element={
-              <ProtectedRoute>
+              
                 <Dashboard />
-              </ProtectedRoute>
+              
             }
           />
           <Route
             path="/add-expense"
             element={
-              <ProtectedRoute>
+              
                 <AddExpense />
-              </ProtectedRoute>
+              
             }
           />
           <Route
             path="/goals"
             element={
-              <ProtectedRoute>
+              
                 <Goals />
-              </ProtectedRoute>
+              
             }
           />
           <Route
             path="/analytics"
             element={
-              <ProtectedRoute>
+              
                 <Analytics />
-              </ProtectedRoute>
+              
             }
           />
           <Route
             path="/learn"
             element={
-              <ProtectedRoute>
+              
                 <Learn />
-              </ProtectedRoute>
+              
             }
           />
         </Routes>

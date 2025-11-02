@@ -5,7 +5,7 @@ import { protect } from "../middleware/authMiddleware.js";
 const router = express.Router();
 
 // Add a new goal
-router.post("/", protect, async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const { name, targetAmount, savedAmount } = req.body;
 
@@ -25,7 +25,7 @@ router.post("/", protect, async (req, res) => {
 });
 
 // Get all goals for logged-in user
-router.get("/", protect, async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const goals = await Goal.find({ user: req.user._id });
     res.json(goals);
@@ -36,7 +36,7 @@ router.get("/", protect, async (req, res) => {
 });
 
 // Update goal progress
-router.put("/:id", protect, async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     const { savedAmount } = req.body;
 

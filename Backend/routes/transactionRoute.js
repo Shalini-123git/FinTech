@@ -4,8 +4,8 @@ import { protect } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-router.get("/:userId", protect, userTransaction);
+router.get("/", userTransaction);
 
-router.post("/", protect, addTransaction);
+router.post("/", addTransaction);
 
 export default router;
