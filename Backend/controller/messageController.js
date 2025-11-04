@@ -11,7 +11,7 @@ export const message = async (req, res) => {
 
     const normalisePrompt = prompt.toLowerCase().trim();
 
-    let botResponse = botResponses[normalisePrompt] || "Sorry, I don't understand that!!";
+    let botResponse = botResponses[normalisePrompt] || "Our bot is in progress — that feature is coming soon!";
 
     // Ensure botResponse is always a string
     if (Array.isArray(botResponse)) {
